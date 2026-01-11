@@ -1,0 +1,35 @@
+﻿@model TraversalCoreProje.Areas.Member.Models.UserEditViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Profile Editing Page</h1>
+<form method="post" enctype="multipart/form-data">
+    @Html.Label("Your Name")
+    <input type="text" asp-for="name" class="form-control"/>
+    <br />
+    @Html.Label("Your Surname")
+    <input type="text" asp-for="surname" class="form-control" />
+    <br />
+    @Html.Label("Your Mail")
+    <input type="text" asp-for="mail" class="form-control" />
+    <br />
+    @Html.Label("Your Password")
+    <input type="text" asp-for="password" class="form-control" />
+    <br />
+    @Html.Label("Your Password Again")
+    <input type="text" asp-for="confirmpassword" class="form-control" />
+    <br />
+    @Html.Label("Your Mobile")
+    <input type="text" asp-for="mobile" class="form-control" />
+    <br />
+    <div class="form-group">
+        <label>Choose an image</label>
+        <input type="file" asp-for="Image" />
+    </div>
+    <br />
+    <button class="btn btn-outline-primary">Update Profile</button>
+   
+</form>
+

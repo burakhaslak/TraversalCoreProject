@@ -1,0 +1,38 @@
+﻿@using EntityLayer.Concrete
+@model List<Reservation>
+@{
+	ViewData["Title"] = "MyOldReservation";
+	Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Previous Reservations</h1>
+@if (!Model.Any())
+{
+	<div class="container mt-5">
+		<h2 style="color:crimson">You don't have any reservations made in the past.</h2>
+	</div>
+}
+else
+{
+	<table class="table table-bordered">
+		<tr>
+			<th>#</th>
+			<th>Location</th>
+			<th>Number of Person</th>
+			<th>Reservation Date</th>
+			<th>State</th>
+		</tr>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.ReservationID</td>
+				<td>@item.Destination.City</td>
+				<td>@item.PersonCount</td>
+				<td>@item.ReservationDate</td>
+				<td>@item.Status</td>
+			</tr>
+		}
+	</table>
+}
+
+
