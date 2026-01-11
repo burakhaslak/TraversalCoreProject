@@ -1,0 +1,62 @@
+﻿@using EntityLayer.Concrete
+@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int sayac = 0;
+}
+
+<h1>List of Users</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Name Surname</th>
+        <th>Username</th>
+        <th>Mail</th>
+        <th>Remove</th>
+        <th>Edit</th>
+        <th>User's Comments</th>
+        <th>User's Tour History</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @{
+                sayac = sayac + 1;
+            }
+            <td>@sayac</td>
+            <td>@item.Name @item.Surname</td>
+            <td>@item.UserName</td>
+            <td>@item.Email</td>
+            <td><a href="/Admin/User/DeleteUser/@item.Id" class="btn btn-outline-danger">Remove</a></td>
+            <td><a href="/Admin/User/EditUser/@item.Id" class="btn btn-outline-success">Edit</a></td>
+            <td><a href="/Admin/User/CommentUser/@item.Id" class="btn btn-outline-info">Comments</a></td>
+            <td><a href="/Admin/User/ReservationUser/@item.Id" class="btn btn-outline-secondary">History</a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Login/SignUp/" class="btn btn-outline-primary">Add a New User</a>
+
+@* <td><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="@item.Id"> Remove </button></td> *@
+<!-- Modal --> 
+@* <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true"> 
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
+    <div class="modal-header">
+        <h5 class="modal-title">Approve to Remove</h5> 
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body"> Do you want to remove this user? </div> <div class="modal-footer"> <form method="post" asp-action="DeleteUser"> 
+            <input type="hidden" id="deleteUserId" name="id" /> <button type="submit" class="btn btn-danger">Yes, Remove</button> </form> 
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button> </div> </div> </div> </div> *@
+
+   @*  <script>
+        var deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var userId = button.getAttribute('data-id');
+        document.getElementById('deleteUserId').value = userId;
+
+    </script> *@
