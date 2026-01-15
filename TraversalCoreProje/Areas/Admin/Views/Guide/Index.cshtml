@@ -1,0 +1,49 @@
+﻿@using EntityLayer.Concrete
+@model List<Guide>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+@* <style>
+</style> *@
+
+<h1>List of Guides</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Name Surname</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Edit</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td><img src="@item.Image" height="60" width="60" class="rounded-circle"/></td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            
+                @{
+                    if (item.Status == true)
+                    {
+                    <td><a href="/Admin/Guide/ChangeToFalse/@item.GuideID" class="btn btn-outline-danger w-100">Deactivate</a></td>
+                }
+                else
+                {
+                    <td><a href="/Admin/Guide/ChangeToTrue/@item.GuideID" class="btn btn-outline-success w-100">Activate</a></td>
+                }
+            }
+           
+            <td><a href="/Admin/Guide/EditGuide/" class="btn btn-outline-success">Edit</a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Admin/Guide/AddGuide/" class="btn btn-outline-primary">Save a New Guide</a>
+

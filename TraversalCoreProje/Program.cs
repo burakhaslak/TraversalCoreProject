@@ -7,12 +7,20 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using OfficeOpenXml;
 using TraversalCoreProje.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddLogging(x =>
+{
+    x.ClearProviders();
+    x.SetMinimumLevel(LogLevel.Debug);
+    x.AddDebug();
+});
 builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
 builder.Services.ContainerDependencies();
@@ -25,6 +33,12 @@ builder.Services.AddMvc(config =>
 });
 builder.Services.AddMvc();
 
+
+var path = Directory.GetCurrentDirectory();
+builder.Logging.AddFile($"{path}\\Logs\\Log1.txt");
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,6 +49,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404", "?code={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();
@@ -61,3 +76,5 @@ app.MapControllerRoute(
     pattern: "{controller=Default}/{action=Index}/{id?}");
 
 app.Run();
+
+
