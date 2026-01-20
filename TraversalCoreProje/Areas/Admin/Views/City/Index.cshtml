@@ -1,0 +1,145 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h2>Country - City Operations</h2>
+<br />
+<button tpye="button" id="btngetlist" class="btn btn-outline-info">List of Cities</button>
+<button tpye="button" id="btngetbyid" class="btn btn-outline-info">Find Cities</button>
+<button tpye="button" id="btnaddcity" class="btn btn-outline-info">Add Cities</button>
+<button tpye="button" id="btndeletecity" class="btn btn-outline-info">Remove Cities</button>
+<button tpye="button" id="btnupdatecity" class="btn btn-outline-info">Update Cities</button>
+
+
+<br />
+<br />
+
+<div id="citylist">
+	Place for the list of cities
+</div>
+<br />
+
+<div>
+	<input type="text" id="txtid" placeholder="Enter the ID of the City" class="form-control" />
+</div>
+
+<br />
+
+<div>
+	<input type="text" id="txtcityid" placeholder="Enter the ID to delete" class="form-control" />
+</div>
+
+<br />
+
+<div>
+	<input type="text" id="txtcityeditid" placeholder="Enter the ID to edit" class="form-control" />
+	<input type="text" id="txtcityname" placeholder="Enter the Name to edit" class="form-control" />
+	<input type="text" id="txtdaynightname" placeholder="Enter the period to edit" class="form-control" />
+</div>
+<br />
+
+<div id="destinationlistbyid">
+</div>
+
+<br />
+<div>
+	<input type="text" id="txtcity" placeholder="Enter the city's name" class="form-control" />
+	<br />
+	<input type="text" id="txtdaynight" placeholder="Period of your stay" class="form-control" />
+	<br />
+	<input type="text" id="txtprice" placeholder="Price" class="form-control" />
+	<br />
+	<input type="text" id="txtcapacity" placeholder="No. of Person" class="form-control" />
+</div>
+
+<script>
+		$("#btngetlist").click(function () {
+		$.ajax({
+			contentType: "application/json",
+			dataType: "json",
+			type: "Get",
+			url: "/Admin/City/CityList/",
+			success: function (func) {
+				let w = jQuery.parseJSON(func);
+				console.log(w);
+				let tablehtml = "<table class=table table-bordered> <tr><th> City Name </th> <th> Day-and-Night </th> <th> Price </th> </tr>";
+				$.each(w, (index, value) => {
+					tablehtml += `<tr><td>${value.City}</td> <td>${value.DayNight}</td> <td> ${value.Price} € </td> </tr>`
+				});
+				tablehtml += "</table>";
+				$("#citylist").html(tablehtml);
+			}
+		});
+	});
+
+	$("#btnaddcity").click(function () {
+
+			let cityvalues = {
+				City:$("#txtcity").val(),
+				DayNight:$("#txtdaynight").val(),
+				Price:$("#txtprice").val(),
+				Capacity:$("#txtcapacity").val()
+			};
+
+			$.ajax({
+				type:"post",
+				url:"/Admin/City/AddCityDestination/",
+				data:cityvalues,
+				success: function(func) {
+					let result = jQuery.parseJSON(func);
+					alert("Route for the city was added successfully")
+				}
+			});
+	});
+
+	   $("#btngetbyid").click(x => {
+		let id = $("#txtid").val();
+
+		$.ajax({
+			contentType: "application/json",
+			dataType: "json",
+			type: "Get",
+			url: "/Admin/City/GetById/",
+			data: { DestinationID: id },
+			success: function (fun2) {
+				let result = jQuery.parseJSON(fun2);
+				console.log(result);
+				let htmlstr = `<table class=table table-bordered><tr><th>Şehir Adı</th><th>Gün-Gece</th><th>Fiyatı</th></tr><tr><td>${result.City}</td><td>${result.DayNight}</td><td>${result.Capacity}</td></tr></table>`;
+				$("#destinationlistbyid").html(htmlstr);
+			}
+		});
+	});
+
+	$("#btndeletecity").click(x => {
+		let id=$("#txtcityid"). val();
+		$.ajax({
+			url:"/Admin/City/DeleteCity/" + id,
+			type:"post",
+			contentType:"application/json",
+			dataType:"json",
+			success:function(fun3){
+				loadData();
+			}
+		});
+	});
+
+	  $("#btnupdatecity").click(function () {
+		let values = {
+			DestinationID: $("#txtcityeditid").val(),
+			City: $("#txtcityname").val(),
+			DayNight: $("#txtdaynightname").val()
+		};
+
+		$.ajax({
+			type: "post",
+			url: "/Admin/City/UpdateCity/",
+			data: values,
+			success: function (fun4) {
+				alert("Update is successful");
+			}
+		});
+	});
+
+</script>
