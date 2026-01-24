@@ -4,6 +4,8 @@ using EntityLayer.Concrete;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using TraversalCoreProje.CQRS.Handlers.DestinationHandlers;
+using TraversalCoreProje.CQRS.Handlers.GuideHandlers;
 using TraversalCoreProje.Models;
 
 
@@ -11,6 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<GetAllDestinationQueryHandler>();
+builder.Services.AddScoped<GetDestinationByIDQueryHandler>();
+builder.Services.AddScoped<CreateDestinationCommandHandler>();
+builder.Services.AddScoped<RemoveDestinationCommandHandler>();
+builder.Services.AddScoped<UpdateDestinationCommandHandler>();
+
+builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssembly(typeof(GetAllGuideQueryHandler).Assembly); }); 
 builder.Services.AddLogging(x =>
 {
     x.ClearProviders();

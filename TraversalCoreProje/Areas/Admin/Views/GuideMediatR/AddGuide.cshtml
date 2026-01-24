@@ -1,0 +1,19 @@
+﻿@model CreateGuideCommand
+@{
+    ViewData["Title"] = "AddGuide";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Add New Guide</h2>
+
+<form method="post">
+    <label>Guide's Name</label>
+    <input type="text" asp-for="Name" class="form-control">
+    <br />
+    <label>Guide's Description</label>
+    <input type="text" asp-for="Description" class="form-control">
+    <br />
+
+    <button class="btn btn-outline-info">Add the Guide</button>
+</form>
+
