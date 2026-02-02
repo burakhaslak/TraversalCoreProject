@@ -14,8 +14,11 @@ namespace EntityLayer.Concrete
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Image { get; set; }
+        public string? GuideListImage { get; set; }
         public string? XUrl { get; set; }
+        public string? Description2 { get; set; }
         public string? InstaUrl { get; set; }
         public bool Status { get; set; }
+        public List<Destination> Destinations { get; set; }
     }
 }
