@@ -13,12 +13,12 @@ namespace TraversalCoreProje.Controllers
     public class PasswordChangeController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly IConfiguration _configuration; // EKLE
+        private readonly IConfiguration _configuration; 
 
-        public PasswordChangeController(UserManager<AppUser> userManager, IConfiguration configuration) // EKLE
+        public PasswordChangeController(UserManager<AppUser> userManager, IConfiguration configuration) 
         {
             _userManager = userManager;
-            _configuration = configuration; // EKLE
+            _configuration = configuration; 
         }
 
         [HttpGet]
@@ -32,7 +32,7 @@ namespace TraversalCoreProje.Controllers
         {
             var user = await _userManager.FindByEmailAsync(forgotPasswordViewModel.Mail);
 
-            // GÜVENLİK: Null kontrolü ekle
+            
             if (user == null)
             {
                 return View();
@@ -46,7 +46,7 @@ namespace TraversalCoreProje.Controllers
             }, HttpContext.Request.Scheme);
 
             MimeMessage mimeMessage = new MimeMessage();
-            MailboxAddress mailboxAddressFrom = new MailboxAddress("Admin", _configuration["EmailSettings:Username"]); // DEĞİŞTİR
+            MailboxAddress mailboxAddressFrom = new MailboxAddress("Admin", _configuration["EmailSettings:Username"]); 
             mimeMessage.From.Add(mailboxAddressFrom);
 
             MailboxAddress mailboxAddressTo = new MailboxAddress("User", forgotPasswordViewModel.Mail);
@@ -60,13 +60,13 @@ namespace TraversalCoreProje.Controllers
             using (var client = new SmtpClient())
             {
                 client.Connect(
-                    _configuration["EmailSettings:SmtpServer"],  // DEĞİŞTİR
-                    int.Parse(_configuration["EmailSettings:Port"]), // DEĞİŞTİR
+                    _configuration["EmailSettings:SmtpServer"], 
+                    int.Parse(_configuration["EmailSettings:Port"]), 
                     false);
 
                 client.Authenticate(
-                    _configuration["EmailSettings:Username"],  // DEĞİŞTİR
-                    _configuration["EmailSettings:Password"]); // DEĞİŞTİR
+                    _configuration["EmailSettings:Username"],  
+                    _configuration["EmailSettings:Password"]); 
 
                 client.Send(mimeMessage);
                 client.Disconnect(true);
@@ -91,12 +91,12 @@ namespace TraversalCoreProje.Controllers
 
             if (userid == null || token == null)
             {
-                return RedirectToAction("ForgetPassword"); // Hata durumunda yönlendir
+                return RedirectToAction("ForgetPassword"); 
             }
 
             var user = await _userManager.FindByIdAsync(userid.ToString());
 
-            // GÜVENLİK: Null kontrolü ekle
+            
             if (user == null)
             {
                 return RedirectToAction("ForgetPassword");
