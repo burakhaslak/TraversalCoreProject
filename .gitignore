@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Hassas bilgileri içeren dosyalar
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
