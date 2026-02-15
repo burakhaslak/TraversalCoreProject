@@ -15,5 +15,16 @@ namespace TraversalCoreProje.Areas.Member.Controllers
             var values = destinationManager.TGetlist();
             return View(values);
         }
+
+        public IActionResult GetCitiesSearchByName(string searchString)
+        {
+            ViewData["CurrentFilter"] = searchString;
+            var values = from x in destinationManager.TGetlist() select x;
+            if(!string.IsNullOrEmpty(searchString) )
+            {
+                values = values.Where(y => y.City.Contains(searchString));
+            }
+            return View(values.ToList());
+        }
     }
 }
