@@ -3075,6 +3075,8 @@ wwwroot\Traversal-Liberty\pricing.html
 wwwroot\Traversal-Liberty\services.html
 wwwroot\userimages\299099cd-a527-4128-9e57-d75d90102f64.jpg
 wwwroot\userimages\4d7250de-e7ea-4dd6-a52e-bdc98bb260cc.jpg
+wwwroot\userimages\8d1e4ca2-7bdd-43e7-bc93-415e1c1d5eb0.png
+wwwroot\userimages\c0bce045-00f0-4803-b672-8980d63912ba.png
 wwwroot\web\css\style.css
 wwwroot\web\images\banner1.jpg
 wwwroot\web\index.html

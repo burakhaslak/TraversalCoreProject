@@ -357,3 +357,4 @@ C:\Users\burakhaslak\source\repos\TraversalCoreProje\TraversalCoreProje\obj\Debu
 C:\Users\burakhaslak\source\repos\TraversalCoreProje\TraversalCoreProje\obj\Debug\net8.0\TraversalCoreProje.Resources.Views.Information.Index.es.resources
 C:\Users\burakhaslak\source\repos\TraversalCoreProje\TraversalCoreProje\obj\Debug\net8.0\TraversalCoreProje.Resources.Views.Information.Index.fr.resources
 C:\Users\burakhaslak\source\repos\TraversalCoreProje\TraversalCoreProje\obj\Debug\net8.0\TraversalCoreProje.Resources.Views.Information.Index.tr.resources
+C:\Users\burakhaslak\source\repos\TraversalCoreProje\TraversalCoreProje\bin\Debug\net8.0\appsettings.Example.json
