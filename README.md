@@ -1,6 +1,6 @@
 # ✈️ Traversal Reservation - Asp.Net Core 8.0 Project
 
-Traversal is a comprehensive dynamic reservation system built with Asp.Net Core 5.0 using N-Tier (Layered) Architecture. This project covers modern web development patterns, advanced library integrations, and robust backend structures.
+Traversal is a comprehensive dynamic reservation system built with Asp.Net Core 8.0 using N-Tier (Layered) Architecture. This project covers modern web development patterns, advanced library integrations, and robust backend structures.
 
 ---
 
@@ -24,7 +24,7 @@ The project supports Multi-language (Localization), allowing users to switch bet
 
 ## 🛠️ Tech Stack & Key Features
 
-- Backend: .NET Core 5.0, C#, Entity Framework Core
+- Backend: .NET Core 8.0, C#, Entity Framework Core
 - Architecture: N-Tier Architecture (Data Access, Entity, Business, UI, DTO, API)
 - Database: MS SQL Server
 - Security: Identity Library (Login, Register, Role Management, Password Reset)
