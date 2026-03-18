@@ -34,8 +34,7 @@ The project supports Multi-language (Localization), allowing users to switch bet
 - Logging & Reporting: Serilog, Excel & PDF Reporting
 - UI/UX: Areas (Admin, Member, Default), View Components, AJAX, Multi-language Support (Localization)
 ---
-### Credits
-This project was developed as part of the Asp.Net Core 5.0 Project Camp by **Murat Yücedağ**.
+
 
 ## 📸 Screenshots
 
